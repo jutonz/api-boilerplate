@@ -17,6 +17,7 @@
     "good-console": "^4.1.0",
     "hapi": "^8.1.0",
     "mocha": "^2.1.0",
-    "request": "^2.51.0"
+    "request": "^2.51.0",
+    "should": "^4.6.1"
   }
 }
