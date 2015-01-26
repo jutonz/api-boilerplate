@@ -34,7 +34,6 @@ server.route({
     var city = request.params.city;
     var units = 'imperial';
     weather.get(city, units, function(weatherInfo) {
-      console.log(weatherInfo);
       reply('The temperature in ' + weatherInfo.name + ', ' + weatherInfo.sys.country + ' is currently ' + weatherInfo.main.temp + '.');
     });
   }
