@@ -14,7 +14,7 @@ server.route({
   method: 'GET'
 , path: '/'
 , handler: function(request, reply) {
-    reply('What a wonderful API you have here')
+    reply('It works!');
   }
 });
 
@@ -71,9 +71,21 @@ server.register({
   }
 },function(error) {
     if (error) throw error; // Problem loading Good plugin
-
-    server.start(function() {
-      server.log('info', 'Server running at: ' + server.info.uri);
-    });
+    if (!module.parent) {
+      server.start(function() {
+        server.log('info', 'Server running at: ' + server.info.uri);
+      });
+    }
   }
 );
+
+module.exports = server;
+
+exports.request = function(server, request, callback) {
+  server.inject(request, function(response) {
+    if (response.payload) {
+      response.body = JSON.parse(response.payload);
+    }
+    callback(response);
+  });
+};

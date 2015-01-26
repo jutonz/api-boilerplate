@@ -27,15 +27,15 @@ constructJsonFromTR = function constructJsonFromTR(tr) {
   , seasonYear: seasonYear
   , originalAirdate: originalAirdate
   , englishAirdate: englishAirdate
-  }
+  };
 
   return JSON.stringify(episodeInfo);
-}
+};
 
 exports.getInfoForEpisodeNumber = function(episodeNumber, callback) {
   var options = {
     uri: 'http://en.wikipedia.org/wiki/List_of_Naruto:_Shippuden_episodes'
-  }
+  };
 
   request(options, function(error, response, body) {
     if (!error && response.statusCode == 200) {
@@ -47,12 +47,12 @@ exports.getInfoForEpisodeNumber = function(episodeNumber, callback) {
       });
     }
   });
-}
+};
 
 exports.getInfoForSeasonNumber = function(seasonNumber, callback) {
   var options = {
     uri: 'http://en.wikipedia.org/wiki/List_of_Naruto:_Shippuden_episodes'
-  }
+  };
 
   request(options, function(error, response, body) {
     if (!error && response.statusCode == 200) {
@@ -68,10 +68,10 @@ exports.getInfoForSeasonNumber = function(seasonNumber, callback) {
             var episodeJson = constructJsonFromTR($(this));
             var episodeObject = JSON.parse(episodeJson);
             jsonArray.push(episodeObject);
-          })
+          });
           callback(JSON.stringify(jsonArray));
         }
-      })
+      });
     }
-  })
-}
+  });
+};
