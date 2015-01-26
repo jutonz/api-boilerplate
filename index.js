@@ -61,24 +61,25 @@ server.route({
   }
 });
 
-server.register({
-  register: Good
-, options: {
-    reporters: [{
-      reporter: require('good-console')
-    , args:[{ log: '*', response: '*' }]
-    }]
-  }
-},function(error) {
-    if (error) throw error; // Problem loading Good plugin
-    if (!module.parent) {
+if (!module.parent) { // Don't start server if testing
+  server.register({
+    register: Good
+  , options: {
+      reporters: [{
+        reporter: require('good-console')
+      , args:[{ log: '*', response: '*' }]
+      }]
+    }
+  },function(error) {
+      if (error) throw error; // Problem loading Good plugin
       server.start(function() {
         server.log('info', 'Server running at: ' + server.info.uri);
       });
     }
-  }
-);
+  );
+}
 
+// Make the server accessible to other modules for testing
 module.exports = server;
 
 exports.request = function(server, request, callback) {
