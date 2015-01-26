@@ -1,0 +1,21 @@
+{
+  "name": "api_fun",
+  "version": "0.1.0",
+  "description": "Sample API for learning purposes",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "keywords": [
+    "npm"
+  ],
+  "author": "Justin Toniazzo",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^0.18.0",
+    "good": "^5.1.1",
+    "good-console": "^4.1.0",
+    "hapi": "^8.1.0",
+    "request": "^2.51.0"
+  }
+}
