@@ -1,8 +1,8 @@
 var Hapi = require('hapi');
 var Good = require('good');
 var request = require('request');
-var weather = require('./weather');
-var naruto = require('./naruto');
+var weather = require('./lib/weather');
+var naruto = require('./lib/naruto');
 
 var server = new Hapi.Server();
 server.connection({

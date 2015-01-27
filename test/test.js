@@ -1,18 +1,14 @@
-// var assert = require('better-assert')
-// var should = require('should')
 var should = require('chai').should();
-var request = require('request');
 
-var api_root = '0.0.0.0:8000';
+before(function(done) {
+  var app = require('../index.js');
+  this.server = app;
+  this.server.connection({ host: 'test' });
+  done();
+});
+
 
 describe('GET /', function() {
-
-  before(function(done) {
-    var api = require('../index.js');
-    this.server = api;
-    this.server.connection({ host: 'test' });
-    done();
-  });
 
   it('should be connectable', function(done) {
     var request = { url: '/', method: 'GET' };
@@ -25,6 +21,7 @@ describe('GET /', function() {
   it('should reply \'It works!\'', function(done) {
     var request = { url: '/', method: 'GET' };
     this.server.inject(request, function(response) {
+      should.exist(response);
       response.should.have.property('payload', 'It works!');
       done();
     });
@@ -34,18 +31,47 @@ describe('GET /', function() {
 
 describe('GET /greet', function(done) {
 
-  before(function(done) {
-    var api = require('../index.js');
-    this.server = api;
-    this.server.connection({ host: 'test' });
-    done();
-  });
-
-  it('should respond \'Hello, friend!\'', function() {
+  it('should reply \'Hello, friend!\'', function(done) {
     var request = { url: '/greet', method: 'GET' };
     this.server.inject(request, function(response) {
+      should.exist(response);
       response.should.have.property('statusCode', 200);
       response.should.have.property('payload', 'Hello, friend!');
+      done();
+    });
+  });
+
+});
+
+describe('GET /greet/{name}', function(done) {
+
+  it('should reply \'Hello, {name}!\'', function(done) {
+    var request = { url: '/greet/bob', method: 'GET' };
+    this.server.inject(request, function(response) {
+      should.exist(response);
+      response.should.have.property('statusCode', 200);
+      response.should.have.property('payload', 'Hello, bob!');
+      done();
+    });
+  });
+
+  it('should preserve capitalization', function(done) {
+    var request = { url: '/greet/Bob', method: 'GET' };
+    this.server.inject(request, function(response) {
+      should.exist(response);
+      response.should.have.property('statusCode', 200);
+      response.should.have.property('payload', 'Hello, Bob!');
+      done();
+    });
+  });
+
+  it('should preserve hyphens', function(done) {
+    var request = { url: '/greet/mary-anne', method: 'GET' };
+    this.server.inject(request, function(response) {
+      should.exist(response);
+      response.should.have.property('statusCode', 200);
+      response.should.have.property('payload', 'Hello, mary-anne!');
+      done();
     });
   });
 
