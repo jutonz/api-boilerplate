@@ -28,4 +28,13 @@ describe('GET /weather/{city}', function() {
     }); 
   });
 
+  it('should return error if an invalid city is specified', function() {
+    var request = { url: '/weather/-', method: 'GET' };
+    this.server.inject(request, function(response) {
+      should.exist(response);
+      response.should.have.property('statusCode', 404);
+      response.should.have.property('message', 'Error: Not found city');
+    });
+  });
+
 });
