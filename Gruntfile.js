@@ -2,7 +2,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json')
   , jshint: {
-      files: ['Gruntfile.js', '*.js', 'test/*.js']
+      files: ['Gruntfile.js', '*.js', 'test/*.js', 'lib/*.js']
     , options: {
         laxcomma: true
       }
