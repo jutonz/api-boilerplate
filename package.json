@@ -12,16 +12,13 @@
   "author": "Justin Toniazzo",
   "license": "ISC",
   "dependencies": {
-    "better-assert": "^1.0.2",
     "chai": "^1.10.0",
     "cheerio": "^0.18.0",
     "good": "^5.1.1",
     "good-console": "^4.1.0",
     "hapi": "^8.1.0",
     "mocha": "^2.1.0",
-    "request": "^2.51.0",
-    "should": "^4.6.1",
-    "supertest": "^0.15.0"
+    "request": "^2.51.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
