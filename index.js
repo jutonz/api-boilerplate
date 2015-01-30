@@ -20,7 +20,7 @@ server.route({
 server.route({
   method: 'GET'
 , path: '/greet/{name?}'
-, handler: function(request, reply ) {
+, handler: function(request, reply) {
     var name = request.params.name ? encodeURIComponent(request.params.name) : 'friend';
     reply('Hello, ' + name + '!');
   }
@@ -48,7 +48,7 @@ if (!module.parent) { // Don't start server if testing
       }]
     }
   },function(error) {
-      if (error) throw error; // Problem loading Good plugin
+      if (error) { throw error; } // Problem loading Good plugin
       server.start(function() {
         server.log('info', 'Server running at: ' + server.info.uri);
       });
